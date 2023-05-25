@@ -64,7 +64,7 @@ if __name__ == "__main__":
 			exit(0)
 	else:
 		video_capture = cv2.VideoCapture(0)
-		while True:
+		while cv2.waitKey(1) != 113:
 			ret, frame = video_capture.read()
 			if not ret:
 				display('-', "Can't get the Frame from the Camera")
@@ -75,8 +75,6 @@ if __name__ == "__main__":
 				all_data.add((bar.type, bar.data.decode()))
 				frame = draw_bar(frame, bar)
 			cv2.imshow("Barcode", frame)
-			if cv2.waitKey(1) & 0xFF == ord('q'):
-				break
 		video_capture.release()
 		cv2.destroyAllWindows()
 	all_data = list(all_data)
